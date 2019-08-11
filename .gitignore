@@ -1,6 +1,12 @@
-.idea
+# mac os
 .DS_Store
 
+# webstorm
+.idea
+
+# node
+.env
 node_modules
+package-lock.json
 *.log
-config.json
+*.gz
