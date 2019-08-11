@@ -1,13 +1,21 @@
 {
   "name": "gcp-getting-started",
   "version": "1.0.0",
-  "description": "gcp-getting-started",
+  "description": "gcp getting started",
   "engines": {
-    "node": ">=8"
+    "node": "8.x.x"
   },
+  "repository": "https://github.com/s06181110/GCP-GettingStarted",
   "main": "app.js",
   "dependencies": {
-    "express": "^4.17.1"
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "mysql": "^2.17.1",
+    "nconf": "^0.10.0",
+    "prompt": "^1.0.0",
+    "pug": "^2.0.4",
+    "uglify-js": "^3.6.0"
   },
   "devDependencies": {},
   "scripts": {
