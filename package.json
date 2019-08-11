@@ -1,0 +1,19 @@
+{
+  "name": "gcp-getting-started",
+  "version": "1.0.0",
+  "description": "gcp-getting-started",
+  "engines": {
+    "node": ">=8"
+  },
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
