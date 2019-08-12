@@ -1,0 +1,19 @@
+extends ../base
+
+block content
+  h3 #{action} book
+  form(method="POST")
+    .form-group
+      label(for="title") Title
+      input.form-control(type="text", name="title", id="title", value=book.title)
+    .form-group
+      label(for="author") Author
+      input.form-control(type="text", name="author", id="author", value=book.author)
+    .form-group
+      label(for="publishedDate") Date Published
+      input.form-control(type="text", name="publishedDate", id="publishedDate", value=book.publishedDate)
+    .form-group
+      label(for="description") Description
+      input.form-control(type="text", name="description", id="description", value=book.description)
+    .form-group
+    button.btn.btn-success(type="submit") Save
