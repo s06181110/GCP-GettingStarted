@@ -20,8 +20,8 @@
   "devDependencies": {},
   "scripts": {
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "init-cloudsql": "node books/model-cloudsql.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": ""
 }
