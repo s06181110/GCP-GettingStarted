@@ -1,6 +1,6 @@
 'use strict';
 
-const extend = require('loadsh').assign;
+const extend = require('lodash').assign;
 const mysql = require('mysql');
 const config = require('../config');
 
