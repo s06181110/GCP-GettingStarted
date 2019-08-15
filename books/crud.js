@@ -26,7 +26,7 @@ router.get('/', (req, res, next) => {
             next(err);
             return;
         }
-        res.render('books/list.bug' , {
+        res.render('books/list.pug' , {
             books: entities,
             nextPageToken: cursor
         });
