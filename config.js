@@ -20,10 +20,15 @@ nconf
     .file({ file: path.join(__dirname, 'config.json')})
     // Defaults
     .defaults({
+        CLOUD_BUCKET: '',
+
         DATA_BACKEND: 'cloudsql',
-        GCLOUD_PROJECT: 'inbound-acolyte-249200',
-        MYSQL_USER: 'admin',
-        MYSQL_PASSWORD: 'secret',
+
+        GCLOUD_PROJECT: '',
+
+        MYSQL_USER: '',
+        MYSQL_PASSWORD: '',
+
         PORT: 8080
     });
 
