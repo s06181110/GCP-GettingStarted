@@ -12,10 +12,10 @@ block content
       i.glyphicon.glyphicon-trash
       span Delete book
 
-    .media
-      .media-body
-        h4= book.title
-          | &nbsp;
-          small= book.publishedDate
-        h5 By #{book.author || 'unknown'}
-        p= book.description
+  .media
+    .media-body
+      h4= book.title
+        | &nbsp;
+        small= book.publishedDate
+      h5 By #{book.author || 'unknown'}
+      p= book.description
