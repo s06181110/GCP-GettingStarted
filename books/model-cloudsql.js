@@ -112,7 +112,7 @@ function createSchema(config) {
     }, config));
 
     connection.query(
-        `CREATE DATABASE IF NOT EXITSTS \`bookshelf\`
+        `CREATE DATABASE IF NOT EXISTS \`bookshelf\`
             DEFAULT CHARACTER SET = 'utf8'
             DEFAULT COLLATE 'utf8_general_ci';
         USE \`bookshelf\`;
