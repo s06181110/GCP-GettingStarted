@@ -1,6 +1,6 @@
 'use strict';
 
-const nconf = require('nconf');
+const nconf = module.exports = require('nconf');
 const path = require('path');
 
 nconf
@@ -20,6 +20,10 @@ nconf
     .file({ file: path.join(__dirname, 'config.json')})
     // Defaults
     .defaults({
+        DATA_BACKEND: 'cloudsql',
+        GCLOUD_PROJECT: 'inbound-acolyte-249200',
+        MYSQL_USER: 'admin',
+        MYSQL_PASSWORD: 'secret',
         PORT: 8080
     });
 
