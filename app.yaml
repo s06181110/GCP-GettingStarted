@@ -1,4 +1,4 @@
-runtime: nodejs8
+runtime: nodejs10
 
 beta_settings:
   cloud_sql_instances: "inbound-acolyte-249200:asia-northeast1:library"
