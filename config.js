@@ -8,13 +8,17 @@ nconf
     .argv()
     // Environment variables
     .env([
-        'DATA_BACKEND',
+        'CLOUD_BUCKET',
+        'NODE_ENV',
         'GCLOUD_PROJECT',
         'INSTANCE_CONNECTION_NAME',
         'MYSQL_USER',
         'MYSQL_PASSWORD',
-        'NODE_ENV',
-        'PORT'
+        'OAUTH2_CLIENT_ID',
+        'OAUTH2_CLIENT_SECRET',
+        'OAUTH2_CALLBACK',
+        'PORT',
+        'SECRET',
     ])
     // Config file
     .file({ file: path.join(__dirname, 'config.json')})
@@ -24,23 +28,22 @@ nconf
 
         DATA_BACKEND: 'cloudsql',
 
-        GCLOUD_PROJECT: '',
-
         MYSQL_USER: '',
         MYSQL_PASSWORD: '',
 
-        PORT: 8080
+        PORT: 8080,
+        SECRET: 'keyboardcat',
     });
 
 // Check for required setting
 checkConfig('GCLOUD_PROJECT');
-
-if (nconf.get('DATA_BACKEND') === 'cloudsql') {
-    checkConfig('MYSQL_USER');
-    checkConfig('MYSQL_PASSWORD');
-    if (nconf.get('NODE_ENV') === 'production') {
-        checkConfig('INSTANCE_CONNECTION_NAME');
-    }
+checkConfig('GCLOUD_BUCKET');
+checkConfig('OAUTH2_CLIENT_ID');
+checkConfig('OAUTH2_CLIENT_SECRET');
+checkConfig('MYSQL_USER');
+checkConfig('MYSQL_PASSWORD');
+if (nconf.get('NODE_ENV') === 'production') {
+    checkConfig('INSTANCE_CONNECTION_NAME');
 }
 
 function checkConfig(setting) {
