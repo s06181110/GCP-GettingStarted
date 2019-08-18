@@ -37,7 +37,7 @@ nconf
 
 // Check for required setting
 checkConfig('GCLOUD_PROJECT');
-checkConfig('GCLOUD_BUCKET');
+checkConfig('CLOUD_BUCKET');
 checkConfig('OAUTH2_CLIENT_ID');
 checkConfig('OAUTH2_CLIENT_SECRET');
 checkConfig('MYSQL_USER');
