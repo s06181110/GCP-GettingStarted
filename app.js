@@ -2,6 +2,8 @@
 
 const path = require('path');
 const express = require('express');
+const session = require('express-session');
+const passport = require('passport');
 const config = require('./config');
 
 const app = express();
@@ -10,6 +12,23 @@ app.disable('etag');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.set('trust proxy', true);
+
+// [START session]
+// Configure the session and session storage.
+const sessionConfig = {
+    resave: false,
+    saveUninitialized: false,
+    secret: config.get('SECRET'),
+    signed: true,
+};
+
+app.use(session(sessionConfig));
+// [END session]
+
+// OAuth2
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(require('./lib/oauth2').router);
 
 // Books
 app.use('/books', require('./books/crud'));

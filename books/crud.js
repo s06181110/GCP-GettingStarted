@@ -3,12 +3,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const images = require('../lib/images');
+const oauth2 = require('../lib/oauth2');
 const model = require('./model-cloudsql');
 
 const router = express.Router();
 
-// Automatically parse requrest body as form data
-router.use(bodyParser.urlencoded({ extended: false }));
+router.use(oauth2.template);
 
 // Set Content-Type for all responses for these routes
 router.use((req, res, next) => {
@@ -33,6 +33,28 @@ router.get('/', (req, res, next) => {
         });
     });
 });
+
+//[START mine]
+// ログインしたユーザーのみがこのハンドラーにアクセスできるように、
+// oauth2.requiredミドルウェアを使用します。
+router.get('/mine', oauth2.required, (req, res, next) => {
+    model.listBy(
+        req.user.id,
+        10,
+        req.query.pageToken,
+        (err, entities, cursor) => {
+            if (err) {
+                next(err);
+                return;
+            }
+            res.render('books/list.pug', {
+                books: entities,
+                nextPageToken: cursor,
+            });
+        }
+    );
+});
+//[END mine]
 
 /**
  * GET /books/add
@@ -59,7 +81,14 @@ router.post(
     images.multer.single('image'),
     images.sendUploadToGCS,
     (req, res, next) => {
-        let data = req.body;
+        const data = req.body;
+
+        if (req.user) {
+            data.createdBy = req.user.displayName;
+            data.createdById = req.user.id;
+        } else {
+            data.createdBy = 'Anonymous';
+        }
 
         // Was an image uploaded? If so, we'll use its public URL.
         // in cloud storage.
@@ -106,7 +135,7 @@ router.post(
     images.multer.single('image'),
     images.sendUploadToGCS,
     (req, res, next) => {
-        let data = req.body;
+        const data = req.body;
 
         // Was an image uploaded? If so, we'll use its public URL.
         // in cloud storage.
