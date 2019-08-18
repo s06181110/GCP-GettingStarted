@@ -33,6 +33,23 @@ function list(limit, token, cb) {
 }
 // [END list]
 
+// [START listBy]
+function listBy(userId, limit, token, cb) {
+    token = token ? parseInt(token, 10) : 0;
+    connection.query(
+        'SELECT * FROM `books` WHERE `createdById` = ? LIMIT ? OFFSET ?',
+        [userId, limit, token],
+        (err, results) => {
+            if (err) {
+                cb(err);
+                return;
+            }
+            const hasMore = results.length === limit ? token + results.length : false;
+            cb(null, results, hasMore);
+        }
+    );
+}
+
 // [START create]
 function create(data, cb) {
     connection.query('INSERT INTO `books` SET ? ', data, (err, res) => {
@@ -83,6 +100,7 @@ function _delete(id, cb) {
 module.exports = {
     createSchema: createSchema,
     list: list,
+    listBy: listBy,
     create: create,
     read: read,
     update: update,
