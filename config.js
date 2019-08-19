@@ -17,6 +17,9 @@ nconf
         'OAUTH2_CLIENT_ID',
         'OAUTH2_CLIENT_SECRET',
         'OAUTH2_CALLBACK',
+        'TWITTER_CONSUMER_KEY',
+        'TWITTER_CONSUMER_SECRET',
+        'TWITTER_CALLBACK',
         'PORT',
         'SECRET',
     ])
